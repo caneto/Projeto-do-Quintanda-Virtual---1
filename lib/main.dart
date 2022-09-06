@@ -12,9 +12,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Quitandinha Virtual',
       theme: ThemeData(
-       primarySwatch: Colors.blue,
+       primarySwatch: Colors.green,
       ),
       home: SignInScreen(),
     );
