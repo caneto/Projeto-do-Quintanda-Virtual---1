@@ -1,19 +1,43 @@
 import 'package:flutter/material.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
 
-class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  int currentIndex = 0;
+  final pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: CustomColors.customContrastColor,
-      body: Container(),
+      body: PageView(
+        controller: pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          Container(color: Colors.red,),
+          Container(color: Colors.yellow,),
+          Container(color: Colors.blue,),
+          Container(color: Colors.purple,),
+        ],
+      ),
       bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
         backgroundColor: CustomColors.customSwatchColor,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.white.withAlpha(100),
+        onTap: (index) {
+          setState(() {
+            pageController.jumpToPage(index);
+            currentIndex = index;
+          });
+        },
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
