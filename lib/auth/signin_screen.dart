@@ -29,14 +29,14 @@ class SignInScreen extends StatelessWidget {
                         fontSize: 40,
                       ),
                       children: [
-                        const TextSpan(
-                            text: "Green",
+                        TextSpan(
+                            text: "Quitanda",
                             style: TextStyle(
-                              color: Colors.white,
+                              color: CustomColors.customWhiteColor,
                               fontWeight: FontWeight.bold,
                             )),
                         TextSpan(
-                            text: "grocer",
+                            text: "virtual",
                             style: TextStyle(
                               color: CustomColors.customContrastColor,
                             ))

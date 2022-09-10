@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitandavirtual/auth/signin_screen.dart';
+import 'package:quitandavirtual/config/custom_colors.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Quitandinha Virtual',
       theme: ThemeData(
        primarySwatch: Colors.green,
+       scaffoldBackgroundColor: CustomColors.customWhiteColor
       ),
       home: SignInScreen(),
     );
