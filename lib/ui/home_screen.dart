@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
         controller: pageController,
         physics: const NeverScrollableScrollPhysics(),
         children: [
-          const HomeTab(),
+          HomeTab(),
           Container(color: Colors.yellow,),
           Container(color: Colors.blue,),
           Container(color: Colors.purple,),

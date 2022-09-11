@@ -1,15 +1,27 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
+import 'package:quitandavirtual/tiles/category_tile.dart';
 
-class HomeTab extends StatelessWidget {
-  const HomeTab({Key? key}) : super(key: key);
+class HomeTab extends StatefulWidget {
+  HomeTab({Key? key}) : super(key: key);
+
+  @override
+  State<HomeTab> createState() => _HomeTabState();
+}
+
+class _HomeTabState extends State<HomeTab> {
+  List<String> categories = [
+    'Frutas', 'Legumes', 'Verduras', 'Temperos', 'Careadis',
+  ];
+
+  String selectCategory = 'Frutas';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+          backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
         title: Text.rich(TextSpan(style: TextStyle(fontSize: 30), children: [
@@ -29,7 +41,11 @@ class HomeTab extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(top: 15, right: 15),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                setState(() {
+
+                });
+              },
               child: Badge(
                 badgeColor: CustomColors.customContrastColor,
                 badgeContent: Text(
@@ -65,6 +81,26 @@ class HomeTab extends StatelessWidget {
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(60),
                       borderSide: BorderSide(width: 0, style: BorderStyle.none))),
+            ),
+          ),
+          Container(
+            padding: const EdgeInsets.only(left: 25),
+            height: 40,
+            child: ListView.separated(
+              scrollDirection: Axis.horizontal,
+              itemCount: categories.length,
+              itemBuilder: (_,index) {
+                return CategoryTile(
+                  category: categories[index],
+                  isSelected: categories[index] == selectCategory,
+                  onPressed: () {
+                    setState(() {
+                       selectCategory = categories[index];
+                    });
+                  },
+                );
+              },
+              separatorBuilder: (_,index) => SizedBox(width: 10,),
             ),
           )
         ],
