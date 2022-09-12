@@ -116,7 +116,9 @@ class _HomeTabState extends State<HomeTab> {
               ),
               itemCount: items.length,
               itemBuilder: (_,index) {
-                return ItemTile();
+                return ItemTile(
+                  item: items[index],
+                );
               },
             ),
           ),
