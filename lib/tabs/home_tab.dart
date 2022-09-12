@@ -1,5 +1,6 @@
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
+import 'package:quitandavirtual/config/app_data.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
 import 'package:quitandavirtual/tiles/category_tile.dart';
 
@@ -11,9 +12,6 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-  List<String> categories = [
-    'Frutas', 'Legumes', 'Verduras', 'Temperos', 'Careadis',
-  ];
 
   String selectCategory = 'Frutas';
 

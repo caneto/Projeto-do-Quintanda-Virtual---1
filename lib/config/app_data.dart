@@ -66,4 +66,4 @@ List<ItemModel> items = [
 
 List<String> categories = [
   'Frutas', 'Grãos', 'Verduras', 'Temperos', 'Cereais'
-]
+];
