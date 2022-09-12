@@ -12,14 +12,13 @@ class HomeTab extends StatefulWidget {
 }
 
 class _HomeTabState extends State<HomeTab> {
-
   String selectCategory = 'Frutas';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.transparent,
+        backgroundColor: Colors.transparent,
         elevation: 0,
         centerTitle: true,
         title: Text.rich(TextSpan(style: TextStyle(fontSize: 30), children: [
@@ -40,9 +39,7 @@ class _HomeTabState extends State<HomeTab> {
             padding: const EdgeInsets.only(top: 15, right: 15),
             child: GestureDetector(
               onTap: () {
-                setState(() {
-
-                });
+                setState(() {});
               },
               child: Badge(
                 badgeColor: CustomColors.customContrastColor,
@@ -63,14 +60,15 @@ class _HomeTabState extends State<HomeTab> {
       body: Column(
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
             child: TextFormField(
               decoration: InputDecoration(
                   filled: true,
                   fillColor: Colors.white,
                   isDense: true,
                   hintText: 'Pesquise aqui',
-                  hintStyle: TextStyle(color: Colors.grey.shade500, fontSize: 14),
+                  hintStyle:
+                      TextStyle(color: Colors.grey.shade500, fontSize: 14),
                   prefixIcon: Icon(
                     Icons.search,
                     color: CustomColors.customContrastColor,
@@ -78,7 +76,8 @@ class _HomeTabState extends State<HomeTab> {
                   ),
                   border: OutlineInputBorder(
                       borderRadius: BorderRadius.circular(60),
-                      borderSide: BorderSide(width: 0, style: BorderStyle.none))),
+                      borderSide:
+                          BorderSide(width: 0, style: BorderStyle.none))),
             ),
           ),
           Container(
@@ -87,20 +86,39 @@ class _HomeTabState extends State<HomeTab> {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: categories.length,
-              itemBuilder: (_,index) {
+              itemBuilder: (_, index) {
                 return CategoryTile(
                   category: categories[index],
                   isSelected: categories[index] == selectCategory,
                   onPressed: () {
                     setState(() {
-                       selectCategory = categories[index];
+                      selectCategory = categories[index];
                     });
                   },
                 );
               },
-              separatorBuilder: (_,index) => SizedBox(width: 10,),
+              separatorBuilder: (_, index) => SizedBox(
+                width: 10,
+              ),
             ),
-          )
+          ),
+          Expanded(
+            child: GridView.builder(
+              padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+              physics: const BouncingScrollPhysics(),
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
+                childAspectRatio: 9 / 11.5,
+                //childAspectRatio:
+              ),
+              itemCount: items.length,
+              itemBuilder: (_,index) {
+                return Container(color: Colors.redAccent,);
+              },
+            ),
+          ),
         ],
       ),
     );
