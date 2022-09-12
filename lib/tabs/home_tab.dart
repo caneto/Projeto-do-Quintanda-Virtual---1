@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:quitandavirtual/config/app_data.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
 import 'package:quitandavirtual/tiles/category_tile.dart';
+import 'package:quitandavirtual/tiles/item_tile.dart';
 
 class HomeTab extends StatefulWidget {
   HomeTab({Key? key}) : super(key: key);
@@ -115,7 +116,7 @@ class _HomeTabState extends State<HomeTab> {
               ),
               itemCount: items.length,
               itemBuilder: (_,index) {
-                return Container(color: Colors.redAccent,);
+                return ItemTile();
               },
             ),
           ),
