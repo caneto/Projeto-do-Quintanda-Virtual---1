@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
+import 'package:quitandavirtual/tabs/cart_tab.dart';
 import 'package:quitandavirtual/tabs/home_tab.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -22,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
         physics: const NeverScrollableScrollPhysics(),
         children: [
           HomeTab(),
-          Container(color: Colors.yellow,),
+          CartTab(),
           Container(color: Colors.blue,),
           Container(color: Colors.purple,),
         ],
