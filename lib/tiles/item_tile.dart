@@ -31,7 +31,10 @@ class ItemTile extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Image.asset(item.imgUrl),
+                  Hero(
+                    tag: item.imgUrl,
+                    child: Image.asset(item.imgUrl),
+                  ),
                   Text(
                     item.itemName,
                     style: TextStyle(
@@ -71,13 +74,10 @@ class ItemTile extends StatelessWidget {
               height: 48,
               width: 35,
               decoration: BoxDecoration(
-                color: CustomColors.customSwatchColor,
-                borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(15),
-                  topRight: Radius.circular(20)
-                )
-
-              ),
+                  color: CustomColors.customSwatchColor,
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(15),
+                      topRight: Radius.circular(20))),
               child: Icon(
                 Icons.shopping_bag_outlined,
                 color: Colors.white,
