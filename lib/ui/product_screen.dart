@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitandavirtual/components/quantity_widget.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
 import 'package:quitandavirtual/models/item_model.dart';
 import 'package:quitandavirtual/utils/utils_services.dart';
@@ -50,11 +51,7 @@ class ProductScreen extends StatelessWidget {
                                 fontSize: 27, fontWeight: FontWeight.bold),
                           ),
                         ),
-                        Container(
-                          height: 30,
-                          width: 70,
-                          color: Colors.blue,
-                        ),
+                        QuantityWidget(),
                       ],
                     ),
                     Text(
