@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
 import 'package:quitandavirtual/utils/utils_services.dart';
+import 'package:quitandavirtual/config/app_data.dart';
 
 class CartTab extends StatelessWidget {
   CartTab({Key? key}) : super(key: key);
@@ -15,13 +16,13 @@ class CartTab extends StatelessWidget {
       ),
       body: Column(
         children: [
-          const Expanded(
-            child: Placeholder(
-              color: Colors.red,
+          Expanded(
+            child: ListView.builder(
+              itemCount: cartItens.length,
+                itemBuilder: (_,index) {
+                  return Text(cartItens[index].item.itemName);
+                },
             ),
-          ),
-          SizedBox(
-            height: 20,
           ),
           Container(
             padding: const EdgeInsets.all(16),
@@ -61,7 +62,10 @@ class CartTab extends StatelessWidget {
                       ),
                     ),
                     onPressed: () {},
-                    child: const Text('Concluir pedido', style: TextStyle(fontSize: 18),),
+                    child: const Text(
+                      'Concluir pedido',
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
                 )
               ],
