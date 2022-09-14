@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitandavirtual/components/quantity_widget.dart';
 import 'package:quitandavirtual/models/cart_item_model.dart';
 
 class CartTile extends StatelessWidget {
@@ -15,10 +16,20 @@ class CartTile extends StatelessWidget {
           height: 60,
           width: 60,
         ),
-        title: Text(cartItemModel.item.itemName,
+        title: Text(
+          cartItemModel.item.itemName,
           style: const TextStyle(
             fontWeight: FontWeight.w500,
           ),
+        ),
+        trailing: Row(
+          children: [
+            QuantityWidget(
+              suffixText: cartItemModel.item.unit,
+              value: cartItemModel.quantity,
+              result: (quantity) {},
+            ),
+          ],
         ),
       ),
     );

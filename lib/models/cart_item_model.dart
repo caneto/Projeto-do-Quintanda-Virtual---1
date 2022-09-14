@@ -2,7 +2,7 @@ import 'package:quitandavirtual/models/item_model.dart';
 
 class CartItemModel {
   ItemModel item;
-  int quantity;
+  int quantity = 1;
 
   CartItemModel({
     required this.item,
