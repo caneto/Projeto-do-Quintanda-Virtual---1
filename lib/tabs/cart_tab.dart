@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
+import 'package:quitandavirtual/tiles/cart_tile.dart';
 import 'package:quitandavirtual/utils/utils_services.dart';
 import 'package:quitandavirtual/config/app_data.dart';
 
@@ -20,7 +21,7 @@ class CartTab extends StatelessWidget {
             child: ListView.builder(
               itemCount: cartItens.length,
                 itemBuilder: (_,index) {
-                  return Text(cartItens[index].item.itemName);
+                  return CartTile(cartItemModel: cartItens[index]);
                 },
             ),
           ),
