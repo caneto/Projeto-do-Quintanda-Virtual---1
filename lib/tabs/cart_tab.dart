@@ -22,7 +22,7 @@ class CartTab extends StatelessWidget {
               itemCount: cartItens.length,
                 itemBuilder: (_,index) {
                   return CartTile(cartItemModel: cartItens[index]);
-                },
+              },
             ),
           ),
           Container(

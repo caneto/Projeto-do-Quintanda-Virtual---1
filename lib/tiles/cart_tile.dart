@@ -15,6 +15,11 @@ class CartTile extends StatelessWidget {
           height: 60,
           width: 60,
         ),
+        title: Text(cartItemModel.item.itemName,
+          style: const TextStyle(
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
     );
   }
