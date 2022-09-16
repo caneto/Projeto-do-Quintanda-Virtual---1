@@ -23,16 +23,33 @@ class OrderTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('Pedido: ${order.id}'),
-              Text(utilsServices.formatDateTime(order.createdDateTime),
-                style: TextStyle(
-                  fontSize: 12,
-                  color: Colors.black
-                ),
+              Text(
+                utilsServices.formatDateTime(order.createdDateTime),
+                style: TextStyle(fontSize: 12, color: Colors.black),
               ),
             ],
           ),
+          childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           children: [
-
+            SizedBox(
+              height: 150,
+              child: Row(
+                children: [
+                  Expanded(
+                    flex: 3,
+                    child: Container(
+                      color: Colors.red,
+                    ),
+                  ),
+                  Expanded(
+                    flex: 2,
+                    child: Container(
+                      color: Colors.blue,
+                    ),
+                  ),
+                ],
+              ),
+            )
           ],
         ),
       ),
