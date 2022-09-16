@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitandavirtual/components/order_status_widget.dart';
 import 'package:quitandavirtual/models/cart_item_model.dart';
 import 'package:quitandavirtual/models/order_model.dart';
 import 'package:quitandavirtual/utils/utils_services.dart';
@@ -47,10 +48,16 @@ class OrderTile extends StatelessWidget {
                       }).toList(),
                     ),
                   ),
+                  VerticalDivider(
+                    color: Colors.grey.shade300,
+                    thickness: 2,
+                    width: 8,
+                  ),
                   Expanded(
                     flex: 2,
-                    child: Container(
-                      color: Colors.blue,
+                    child: OrderStatusWidget(
+                      status: order.status,
+                      isOverdue: order.overdueDateTime.isBefore(DateTime.now()),
                     ),
                   ),
                 ],
@@ -78,13 +85,13 @@ class _OrderItemWidget extends StatelessWidget {
       child: Row(
         children: [
           Text(
-            '${orderItem.quantity} ${orderItem.item.unit} ',
+            '${ordemItem.quantity} ${ordemItem.item.unit} ',
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
-          Expanded(child: Text(orderItem.item.itemName)),
-          Text(utilsServices.priceToCurrency(orderItem.totalPrice())),
+          Expanded(child: Text(ordemItem.item.itemName)),
+          Text(utilsServices.priceToCurrency(ordemItem.totalPrice())),
         ],
       ),
     );
