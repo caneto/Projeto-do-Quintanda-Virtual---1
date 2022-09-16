@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitandavirtual/models/cart_item_model.dart';
 import 'package:quitandavirtual/models/order_model.dart';
 import 'package:quitandavirtual/utils/utils_services.dart';
 
@@ -37,8 +38,13 @@ class OrderTile extends StatelessWidget {
                 children: [
                   Expanded(
                     flex: 3,
-                    child: Container(
-                      color: Colors.red,
+                    child: ListView(
+                      children: order.items.map((orderItem) {
+                        return _OrderItemWidget(
+                          utilsServices: utilsServices,
+                          ordemItem: orderItem,
+                        );
+                      }).toList(),
                     ),
                   ),
                   Expanded(
@@ -52,6 +58,34 @@ class OrderTile extends StatelessWidget {
             )
           ],
         ),
+      ),
+    );
+  }
+}
+
+class _OrderItemWidget extends StatelessWidget {
+  const _OrderItemWidget(
+      {Key? key, required this.utilsServices, required this.ordemItem})
+      : super(key: key);
+
+  final UtilsServices utilsServices;
+  final CartItemModel ordemItem;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 10),
+      child: Row(
+        children: [
+          Text(
+            '${orderItem.quantity} ${orderItem.item.unit} ',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+          Expanded(child: Text(orderItem.item.itemName)),
+          Text(utilsServices.priceToCurrency(orderItem.totalPrice())),
+        ],
       ),
     );
   }
