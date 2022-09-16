@@ -6,7 +6,7 @@ import 'package:quitandavirtual/tiles/category_tile.dart';
 import 'package:quitandavirtual/tiles/item_tile.dart';
 
 class HomeTab extends StatefulWidget {
-  HomeTab({Key? key}) : super(key: key);
+  const HomeTab({Key? key}) : super(key: key);
 
   @override
   State<HomeTab> createState() => _HomeTabState();
