@@ -6,18 +6,17 @@ class OrderStatusWidget extends StatelessWidget {
   final bool isOverdue;
 
   final Map<String, int> allStatus = <String, int>{
-    'peding_payment':0,
-    'refunded':1,
-    'paid':2,
-    'preparing_purchase':3,
-    'shipping':4,
-    'delivared':5,
+    'pending_payment': 0,
+    'refunded': 1,
+    'paid': 2,
+    'preparing_purchase': 3,
+    'shipping': 4,
+    'delivered': 5,
   };
 
   int get currentStatus => allStatus[status]!;
 
-  OrderStatusWidget(
-      {Key? key, required this.status, required this.isOverdue})
+  OrderStatusWidget({Key? key, required this.status, required this.isOverdue})
       : super(key: key);
 
   @override
@@ -30,7 +29,7 @@ class OrderStatusWidget extends StatelessWidget {
           title: 'Pedido Confirmado',
         ),
         _CustomDivider(),
-        if(currentStatus == 1)  ...[
+        if (currentStatus == 1) ...[
           const _StatusDot(
             isActive: true,
             title: 'Pix estornado',
@@ -42,9 +41,27 @@ class OrderStatusWidget extends StatelessWidget {
             title: 'Pagamento Pix vencido',
             backgroundColor: Colors.redAccent,
           ),
+        ] else ...[
+          _StatusDot(
+            isActive: currentStatus >= 2,
+            title: 'Pagamento',
+          ),
+          const _CustomDivider(),
+          _StatusDot(
+            isActive: currentStatus >= 3,
+            title: 'Preparando',
+          ),
+          const _CustomDivider(),
+          _StatusDot(
+            isActive: currentStatus >= 4,
+            title: 'Envie',
+          ),
+          const _CustomDivider(),
+          _StatusDot(
+            isActive: currentStatus == 5,
+            title: 'Entregue',
+          ),
         ]
-
-
       ],
     );
   }
@@ -72,7 +89,11 @@ class _StatusDot extends StatelessWidget {
   final String title;
   final Color? backgroundColor;
 
-  const _StatusDot({Key? key, required this.isActive, required this.title, this.backgroundColor})
+  const _StatusDot(
+      {Key? key,
+      required this.isActive,
+      required this.title,
+      this.backgroundColor})
       : super(key: key);
 
   @override
@@ -86,8 +107,9 @@ class _StatusDot extends StatelessWidget {
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             border: Border.all(color: CustomColors.customSwatchColor),
-            color:
-                isActive ? backgroundColor ?? CustomColors.customSwatchColor : Colors.transparent,
+            color: isActive
+                ? backgroundColor ?? CustomColors.customSwatchColor
+                : Colors.transparent,
           ),
           child: isActive
               ? const Icon(
