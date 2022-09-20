@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quitandavirtual/components/payment_dialog.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
 import 'package:quitandavirtual/models/cart_item_model.dart';
 import 'package:quitandavirtual/tiles/cart_tile.dart';
@@ -89,7 +90,14 @@ class _CartTabState extends State<CartTab> {
                     onPressed: () async {
                       bool? result = await showOrderConfirmation();
 
-                      print(result);
+                      if(result ?? false) {
+                        showDialog(
+                          context: context,
+                          builder: (_) {
+                            return PaymentDialog(order: appData.orders.first);
+                          },
+                        );
+                      }
                     },
                     child: const Text(
                       'Concluir pedido',
