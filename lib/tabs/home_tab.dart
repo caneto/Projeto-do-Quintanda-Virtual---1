@@ -2,7 +2,7 @@ import 'package:add_to_cart_animation/add_to_cart_animation.dart';
 import 'package:add_to_cart_animation/add_to_cart_icon.dart';
 import 'package:badges/badges.dart';
 import 'package:flutter/material.dart';
-import 'package:quitandavirtual/config/app_data.dart';
+import 'package:quitandavirtual/config/app_data.dart' as appData;
 import 'package:quitandavirtual/config/custom_colors.dart';
 import 'package:quitandavirtual/tiles/category_tile.dart';
 import 'package:quitandavirtual/tiles/item_tile.dart';
@@ -61,9 +61,12 @@ class _HomeTabState extends State<HomeTab> {
                   style: TextStyle(
                       color: CustomColors.customWhiteColor, fontSize: 12),
                 ),
-                child: Icon(
-                  Icons.shopping_cart,
-                  color: CustomColors.customSwatchColor,
+                child: AddToCartIcon(
+                  key: globalKeyCartItems,
+                  icon: Icon(
+                    Icons.shopping_cart,
+                    color: CustomColors.customSwatchColor,
+                  ),
                 ),
               ),
             ),
@@ -97,7 +100,7 @@ class _HomeTabState extends State<HomeTab> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(60),
                         borderSide:
-                            BorderSide(width: 0, style: BorderStyle.none))),
+                            const BorderSide(width: 0, style: BorderStyle.none))),
               ),
             ),
             Container(
@@ -105,19 +108,19 @@ class _HomeTabState extends State<HomeTab> {
               height: 40,
               child: ListView.separated(
                 scrollDirection: Axis.horizontal,
-                itemCount: categories.length,
+                itemCount: appData.categories.length,
                 itemBuilder: (_, index) {
                   return CategoryTile(
-                    category: categories[index],
-                    isSelected: categories[index] == selectCategory,
+                    category: appData.categories[index],
+                    isSelected: appData.categories[index] == selectCategory,
                     onPressed: () {
                       setState(() {
-                        selectCategory = categories[index];
+                        selectCategory = appData.categories[index];
                       });
                     },
                   );
                 },
-                separatorBuilder: (_, index) => SizedBox(
+                separatorBuilder: (_, index) => const SizedBox(
                   width: 10,
                 ),
               ),
@@ -133,10 +136,11 @@ class _HomeTabState extends State<HomeTab> {
                   childAspectRatio: 9 / 11.5,
                   //childAspectRatio:
                 ),
-                itemCount: items.length,
+                itemCount: appData.items.length,
                 itemBuilder: (_,index) {
                   return ItemTile(
-                    item: items[index],
+                    item: appData.items[index],
+                    cartAnimationMethod: itemSelectedCartAnimations
                   );
                 },
               ),

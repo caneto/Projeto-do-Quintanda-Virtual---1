@@ -4,12 +4,32 @@ import 'package:quitandavirtual/models/item_model.dart';
 import 'package:quitandavirtual/ui/product_screen.dart';
 import 'package:quitandavirtual/utils/utils_services.dart';
 
-class ItemTile extends StatelessWidget {
-  ItemTile({Key? key, required this.item}) : super(key: key);
+class ItemTile extends StatefulWidget {
+  ItemTile({
+    Key? key,
+    required this.item,
+    required this.cartAnimationMethod,
+  }) : super(key: key);
 
   final ItemModel item;
+  final void Function(GlobalKey) cartAnimationMethod;
 
+  @override
+  State<ItemTile> createState() => _ItemTileState();
+}
+
+class _ItemTileState extends State<ItemTile> {
   UtilsServices utils = UtilsServices();
+
+  final GlobalKey imageGk = GlobalKey();
+
+  IconData tileIcon = Icons.add_shopping_cart_outlined;
+
+  Future<void> switchIcon() async {
+    setState(() => tileIcon = Icons.check);
+    await Future.delayed(const Duration(milliseconds: 1500));
+    setState(() => tileIcon = Icons.add_shopping_cart_outlined);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +38,7 @@ class ItemTile extends StatelessWidget {
         GestureDetector(
           onTap: () {
             Navigator.of(context).push(MaterialPageRoute(builder: (c) {
-              return ProductScreen(item: item);
+              return ProductScreen(item: widget.item);
             }));
           },
           child: Card(
@@ -32,12 +52,15 @@ class ItemTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   Hero(
-                    tag: item.imgUrl,
-                    child: Image.asset(item.imgUrl),
+                    tag: widget.item.imgUrl,
+                    child: Image.asset(
+                      widget.item.imgUrl,
+                      key: imageGk,
+                    ),
                   ),
                   Text(
-                    item.itemName,
-                    style: TextStyle(
+                    widget.item.itemName,
+                    style: const TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
@@ -45,14 +68,14 @@ class ItemTile extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        utils.priceToCurrency(item.price),
+                        utils.priceToCurrency(widget.item.price),
                         style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: CustomColors.customSwatchColor),
                       ),
                       Text(
-                        '/${item.unit}',
+                        '/${widget.item.unit}',
                         style: TextStyle(
                             fontSize: 12,
                             fontWeight: FontWeight.bold,
@@ -69,7 +92,11 @@ class ItemTile extends StatelessWidget {
           top: 4,
           right: 4,
           child: GestureDetector(
-            onTap: () {},
+            onTap: () {
+              switchIcon();
+
+              widget.cartAnimationMethod(imageGk);
+            },
             child: Container(
               height: 48,
               width: 35,
