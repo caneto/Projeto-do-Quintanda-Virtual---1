@@ -19,6 +19,8 @@ class _CartTabState extends State<CartTab> {
   void removeItemFromCart(CartItemModel cartItemModel) {
     setState(() {
       appData.cartItens.remove(cartItemModel);
+
+      utilsServices.showToast(message: '${cartItemModel.item.itemName} removido(a) do carrinho');
     });
   }
 
@@ -97,6 +99,8 @@ class _CartTabState extends State<CartTab> {
                             return PaymentDialog(order: appData.orders.first);
                           },
                         );
+                      } else {
+                        utilsServices.showToast(message: 'Pedido não confirmado', isError: true);
                       }
                     },
                     child: const Text(
