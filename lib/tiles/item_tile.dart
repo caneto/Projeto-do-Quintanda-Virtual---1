@@ -91,29 +91,35 @@ class _ItemTileState extends State<ItemTile> {
         Positioned(
           top: 4,
           right: 4,
-          child: GestureDetector(
-            onTap: () {
-              switchIcon();
+          child: ClipRRect(
+           borderRadius: const BorderRadius.only(
+             bottomLeft: Radius.circular(15),
+             topRight: Radius.circular(20)
+           ),
+           child: Material (
+              child: InkWell(
+                onTap: () {
+                  switchIcon();
 
-              widget.cartAnimationMethod(imageGk);
-            },
-            child: Container(
-              height: 48,
-              width: 35,
-              decoration: BoxDecoration(
-                  color: CustomColors.customSwatchColor,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(15),
-                      topRight: Radius.circular(20))),
-              child: Icon(
-                Icons.shopping_bag_outlined,
-                color: Colors.white,
-                size: 20,
+                  widget.cartAnimationMethod(imageGk);
+                },
+                child: Ink(
+                  height: 48,
+                  width: 35,
+                  decoration: BoxDecoration(
+                      color: CustomColors.customSwatchColor,
+                  ),
+                  child: const Icon(
+                    Icons.shopping_bag_outlined,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                ),
               ),
             ),
           ),
-        )
-      ],
+         )
+       ],
     );
   }
 }

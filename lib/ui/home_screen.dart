@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onTap: (index) {
           setState(() {
             //pageController.jumpToPage(index);
-            pageController.animateToPage(index, duration: const Duration(milliseconds: 4  00), curve: Curves.easeIn);
+            pageController.animateToPage(index, duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
             currentIndex = index;
           });
         },
