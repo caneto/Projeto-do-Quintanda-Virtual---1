@@ -38,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
         unselectedItemColor: Colors.white.withAlpha(100),
         onTap: (index) {
           setState(() {
-            pageController.jumpToPage(index);
+            //pageController.jumpToPage(index);
+            pageController.animateToPage(index, duration: const Duration(milliseconds: 4  00), curve: Curves.easeIn);
             currentIndex = index;
           });
         },
