@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:quitandavirtual/auth/signin_screen.dart';
 import 'package:quitandavirtual/config/custom_colors.dart';
+import 'package:quitandavirtual/ui/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
        primarySwatch: Colors.green,
        scaffoldBackgroundColor: CustomColors.customWhiteColor
       ),
-      home: SignInScreen(),
+      home: const SplashScreen(),
     );
   }
 }
