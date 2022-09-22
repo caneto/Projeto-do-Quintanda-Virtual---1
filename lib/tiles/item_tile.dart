@@ -5,14 +5,15 @@ import 'package:quitandavirtual/ui/product_screen.dart';
 import 'package:quitandavirtual/utils/utils_services.dart';
 
 class ItemTile extends StatefulWidget {
+  final ItemModel item;
+  final void Function(GlobalKey) cartAnimationMethod;
+
   ItemTile({
     Key? key,
     required this.item,
     required this.cartAnimationMethod,
   }) : super(key: key);
 
-  final ItemModel item;
-  final void Function(GlobalKey) cartAnimationMethod;
 
   @override
   State<ItemTile> createState() => _ItemTileState();
@@ -24,6 +25,7 @@ class _ItemTileState extends State<ItemTile> {
   final GlobalKey imageGk = GlobalKey();
 
   IconData tileIcon = Icons.add_shopping_cart_outlined;
+  //Icons.shopping_bag_outlined,
 
   Future<void> switchIcon() async {
     setState(() => tileIcon = Icons.check);
@@ -109,8 +111,8 @@ class _ItemTileState extends State<ItemTile> {
                   decoration: BoxDecoration(
                       color: CustomColors.customSwatchColor,
                   ),
-                  child: const Icon(
-                    Icons.shopping_bag_outlined,
+                  child: Icon(
+                    tileIcon,
                     color: Colors.white,
                     size: 20,
                   ),
